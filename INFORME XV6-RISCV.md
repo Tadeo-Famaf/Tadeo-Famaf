@@ -29,10 +29,12 @@ Ahora, que ocurre si no hay ningún proceso en estado RUNNABLE (es decir `if(fou
 
 ### **¿Qué es un *quantum*? ¿Dónde se define en el código? ¿Cuánto dura un *quantum* en `xv6-riscv`?**
 
-Un quantum es un intervalo de tiempo que un proceso tiene para ejecutarse antes de que el scheduler pase al siguiente proceso. Pero el quantum no es un valor que no tenga importancia, de hecho, es muy importante ya que su tamaño puede influir en el rendimiento del sistema, afectando al tiempo de respuesta y de espera por ejemplo. Un quantum muy corto (o chico) puede llevar a un alto overhead por tantos `cambios de contexto`, lo que generaria una disminución de la `eficencia` del sistema en general. En cambio, si el quantum es largo (o grande), puede hacer que los procesos tengan que esperar `mucho más` tiempo para poder ejecutarse y se sientan `atrasados`. Lo mejor es buscar un quantum lo más equilibrado posible para mejorar la expericneic adel usuario y optimizar lo mejor posible el sistema y su carga de trabajo.
+Un quantum es un intervalo de tiempo que un proceso tiene para ejecutarse antes de que el scheduler pase al siguiente proceso. Pero el quantum no es un valor que no tenga importancia, de hecho, es muy importante ya que su tamaño puede influir en el rendimiento del sistema, afectando al tiempo de respuesta y de espera por ejemplo. 
+
+Un quantum muy corto (o chico) puede llevar a un alto overhead por tantos cambios de contexto, lo que generaria una disminución de la eficencia del sistema en general. En cambio, si el quantum es largo (o grande), puede hacer que los procesos tengan que esperar mucho más tiempo para poder ejecutarse y se sientan atrasados. Lo mejor es buscar un quantum lo más equilibrado posible para mejorar la experiencia del usuario y optimizar lo mejor posible el sistema y su carga de trabajo.
 
 En el código no encontramos al quantum con ese nombre en especifico, por lo tanto es más complicado ubicarlo. Sin embargo, lo encontramos en el directorio `so24lab3g17/kernel/start.c`, especificamente es la función `timerinit()`
-la cual tiene como función pedir que se hagan interrupciones después de tal tiempo. Un quantum en xv6-riscv dura 10 ms.
+la cual tiene como función pedir que se hagan interrupciones. Un quantum en xv6-riscv dura 10 ms.
 
 ![timerinit](https://github.com/user-attachments/assets/92208d04-6f24-4f61-8dfc-684886190890)
 
