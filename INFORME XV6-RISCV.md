@@ -21,7 +21,7 @@ para realizar un cambio de contexto entre el proceso que se **estaba** ejecutand
 
 Posteriormente, se libera el lock (`release(&p->lock)`).
 
-Ahora, que ocurre si no hay ningún proceso en estado RUNNABLE (es decir `found == 0`)? bueno, el sistema esperará en un estado de bajo consumo (`asm volatile("wfi")`) y de inactividad en ese núcleo hasta que se produzca algún tipo de interrupción.
+Ahora, que ocurre si no hay ningún proceso en estado RUNNABLE (es decir `if(found == 0)`)? bueno, el sistema esperará en un estado de bajo consumo (`asm volatile("wfi")`) y de inactividad en ese núcleo hasta que se produzca algún tipo de interrupción.
 
 
 
