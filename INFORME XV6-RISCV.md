@@ -1,5 +1,7 @@
 # INFORME XV6-RISCV
 
+## Primera Parte
+
 ### **¿Qué política de planificación utiliza `xv6-riscv` para elegir el próximo proceso a ejecutarse?**
 
 Xv6-riscv usa *RR (Round Robin)* como política de planificación. La implementación la podemos encontrar en el directorio `so24lab3g17/kernel/proc.c`, en especifico en la función `scheduler()`.
