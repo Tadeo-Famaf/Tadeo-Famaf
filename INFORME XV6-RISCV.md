@@ -11,7 +11,7 @@ Xv6-riscv usa *RR (Round Robin)* como política de planificación. La implementa
 ![scheduler](https://github.com/user-attachments/assets/085626c1-4c3d-4007-9036-8e035b6a4758)
 
 
-Podemos observar que la función scheduler contiene 2 loops, el primerloop (`for(;;)`) es infinito, esto para buscar continuamente procesos que puedan ejecutarse, luego dentro de este loop se habilitan las interrupciones con `intr_on()` para evitar un bloqueo si los procesos estan en espera.
+Podemos observar que la función scheduler contiene 2 loops, el primer loop (`for(;;)`) es infinito, esto para buscar continuamente procesos que puedan ejecutarse, luego dentro de este loop se habilitan las interrupciones con `intr_on()` para evitar un bloqueo si los procesos estan en espera.
 
 En el segundo loop (`for(p = proc; p < &proc[NPROC]; p++)`) se itera sobre la lista de procesos, después se adquiere el lock (o bloqueo) del proceso p (`acquire(&p->lock)`) y a continuación se verifica si
 el proceso p se encuentra en estado `RUNNABLE`, lo que significa que está listo para ejecutarse.
@@ -21,11 +21,9 @@ para realizar un cambio de contexto entre el proceso que se **estaba** ejecutand
 
 Posteriormente, se libera el lock (`release(&p->lock)`).
 
-Ahora, que ocurre si el proceso p no se encuentra en estado RUNNABLE? bueno, el sistema esperara en un estado de bajo consumo (`asm volatile("wfi")`) y de inactividad en ese núcleo hasta que se produzca algún tipo de interrupción.
+Ahora, que ocurre si no hay ningún proceso en estado RUNNABLE (es decir `found == 0`)? bueno, el sistema esperará en un estado de bajo consumo (`asm volatile("wfi")`) y de inactividad en ese núcleo hasta que se produzca algún tipo de interrupción.
 
 
-
-kernel/start.c
 
 ***
 
