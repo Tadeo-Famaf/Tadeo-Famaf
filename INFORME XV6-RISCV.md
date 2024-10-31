@@ -233,3 +233,43 @@ Esto ocurre porque al ser tan rápidos los procesos cpubound, compiten por los r
 No, no es adecuado ya que nuestras métricas de cpubench e iobench tienen una ligera variación, además cada tipo de operación representa una carga distinta para el sistema y utiliza distintos recursos, por
 ende, no es adecuado comparar la cantidad de operaciones de cpubound con la cantidad de operaciones iobound.
 
+
+
+
+
+
+
+
+# Planificador MLFQ en XV6-RISCV
+
+
+En este laboratorio hicimos una investigación sobre el planificador de xv6-riscv para posteriormente implementar el planificador MLFQ e hicimos experimentos con procesos `cpubound` e `iobound` para observar
+el comportamiento del planificador original con política RR (Round Robin) y del planificador MLFQ.
+
+Para estos experimentos, debimos usar una métrica para poder hacer las mediciones de forma correcta y posteriormente hacer los mismos experimentos con el quantum cada vez más chico para ver como se
+comportaba el planificador.
+
+Algunos comandos usados para los experimentos son los siguientes:
+
+`iobench N &`
+
+`cpubench N &`
+
+`iobench N &; cpubench N &; cpubench N &; cpubench N &`
+
+Donde `N` Representa la cantidad de veces que se realiza el ciclo de medición.
+
+Para representar las mediciones realizadas hicimos tablas y gráficos, un ejemplo de tabla es la siguiente:
+
+| Pid | Metrica                  | Resultado  | S.T  | T.T  |
+|-----|--------------------------|------------|------|------|
+| a   | (total_ops * 1000) / E.T | 7262       | 796  | 141  |
+| a   | (total_ops * 1000) / E.T | 6965       | 937  | 147  |
+| a   | (total_ops * 1000) / E.T | 7366       | 1084 | 139  |
+| a   | (total_ops * 1000) / E.T | 7420       | 1224 | 138  |
+| a   | (total_ops * 1000) / E.T | 7474       | 1363 | 137  |
+| a   | (total_ops * 1000) / E.T | 7366       | 1500 | 139  |
+| a   | (total_ops * 1000) / E.T | 7529       | 1639 | 136  |
+
+En el informe está toda la información e investigación que se realizó sobre el planificador de xv6-riscv.
+
