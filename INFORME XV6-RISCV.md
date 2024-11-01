@@ -273,3 +273,13 @@ Para representar las mediciones realizadas hicimos tablas y gráficos, un ejempl
 
 En el informe está toda la información e investigación que se realizó sobre el planificador de xv6-riscv.
 
+
+
+
+
+
+![image](https://github.com/user-attachments/assets/06b44c16-d77f-46fb-8650-200af32ba918)
+
+![image](https://github.com/user-attachments/assets/3f8b0b13-ead7-4b73-afc2-6b6bf70e5001)
+
+
